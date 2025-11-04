@@ -1,0 +1,439 @@
+---
+title: "tarea4"
+author: "Roberto Baltodano - Sergio Blanco"
+date: "2025-10-28"
+output:
+  rmdformats::downcute:
+    self_contained: true
+    code_folding: show # Añade un botón para visualizar el código fácilmente, las opciones son hide (no muestra el código a priori) y show (muestra el código a priori)
+    thumbnails: true
+    lightbox: true
+    gallery: false
+    df_print: paged
+    highlight: tango
+---
+
+
+
+
+# Aplicación de técnicas de machine learning usando el lenguaje R, popular en estadística y análisis de datos 
+
+ ¿Qué riesgos deben considerarse?
+# 1. Introducción al tema 
+
+ *¿Qué es y en qué contexto aparece? *
+ 
+R es un lenguaje de programación con enfoque al análisis estadístico. Implementa el lenguaje de software libre S. Se utiliza mucho para investigación científica en áreas como aprendizaje automático, minería de datos, econometría, investigación biomédica, bioinformática y en la inferencia estadística. [1]
+
+
+*¿Por qué es relevante en la actualidad?*
+
+El término machine learning (ML; aprendizaje automático) se utiliza en el campo de la inteligencia artificial desde 1959 para hacer referencia, fundamentalmente, a algoritmos de predicción (inicialmente para reconocimiento de patrones). Muchas de las herramientas que utilizan provienen del campo de la estadística y, en cualquier caso, la estadística (y por tanto las matemáticas) es la base de todos estos enfoques para analizar datos (y no conviene perder la base formal). Por este motivo, desde la estadística computacional se introdujo el término statistical learning (aprendizaje estadístico) para hacer referencia a este tipo de herramientas, pero desde el punto de vista estadístico (teniendo en cuenta la incertidumbre debida a no disponer de toda la información). Tradicionalmente, ML no se preocupa del origen de los datos. Incluso es habitual que se considere que un conjunto o enorme de datos es equivalente a disponer de toda la información  [1]
+
+ 
+ 
+# 2. Fundamento teórico
+
+
+Métodos (de aprendizaje supervisado) y paquetes de R 
+
+ A continuación se muestran los principales métodos y algunos de los paquetes de R que los implementan (muchos son válidos tanto para regresión como para clasificación, como por ejemplo los basados en árboles, aunque aquí aparecen en su aplicación habitual).
+Métodos (principalmente) de clasificación:
+
+
+1. Análisis discriminante (lineal, cuadrático), regresión logística, multinomial…: stats, MASS.
+1. Árboles de decisión, bagging, bosques aleatorios, boosting: rpart, party, C50, Cubist, randomForest, adabag, xgboost.
+1. Máquinas de soporte vectorial: kernlab, e1071.
+
+1. Métodos (principalmente) de regresión:
+   1. Modelos lineales:
+   1. Regresión lineal: lm(), lme(), biglm.
+   1. Regresión lineal robusta: MASS::rlm().
+   1. Métodos de regularización (ridge regression, LASSO): glmnet, elasticnet.
+   1. Modelos lineales generalizados: glm(), bigglm.
+   1. Modelos paramétricos no lineales: nls(), nlme.
+   1. Regresión local (vecinos más próximos y métodos de suavizado): kknn, loess(), KernSmooth, sm, np.  
+   1. Modelos aditivos generalizados: mgcv, gam.
+   1. Regresión spline adaptativa multivariante: earth.
+   1. Regresión por projection pursuit (incluyendo Single index model): ppr(), np::npindex().
+   1. Redes neuronales: nnet, neuralnet.
+
+Como todos estos paquetes emplean opciones, estructuras y convenciones sintácticas diferentes [2]
+
+ 
+# 3. Estado del arte
+
+ ¿Qué investigaciones, tecnologías o empresas lo están utilizando?  
+
+¿Qué herramientas, frameworks o lenguajes son comunes en este ámbito? 
+
+se han desarrollado paquetes que proporcionan interfaces unificadas a muchas de estas implementaciones. Entre ellos podríamos citar:
+1. caret (Kuhn, 2023; ver también Kuhn y Johnson, 2013), 
+1. mlr3 (Lang et al., 2019; Bischl et al., 2024) 
+1. tidymodels (Kuhn y Wickham, 2023, 2020; Kuhn y Silge, 2022). 
+
+También se cuenta con un paquete desarrollado por PROMIDAT
+
+El repositorio de GitHub traineR de PROMiDAT está disponible en https://github.com/PROMiDAT/traineR. 
+
+Este repositorio aloja el código fuente del paquete traineR para el lenguaje de programación R, diseñado para estandarizar y unificar los métodos de creación de modelos predictivos de clasificación y regresión. 
+
+Información clave [3]
+
+Propósito: El paquete traineR busca unificar la forma de construir modelos predictivos mediante una variedad de algoritmos, incluyendo:
+
+1. K-Vecinos más cercanos.
+1. Árboles de decisión.
+1. Ada Boosting.
+1. Extreme Gradient Boosting.
+1. Bosques aleatorios.
+1. Redes neuronales.
+1. Máquinas de vectores de soporte.
+
+Función: 
+      Al homogeneizar la creación y el resultado predictivo de estos modelos, traineR facilita la comparación de su rendimiento.
+
+Organización: 
+      El repositorio forma parte de la organización más amplia de PROMiDAT (Programa Iberoamericano de Formación en Minería de Datos) en GitHub, que desarrolla y mantiene varios paquetes de R para la educación y práctica en ciencia de datos.
+
+Documentación y soporte: Para documentación general, se puede visitar la página del paquete en RDocumentation. Para reportar errores o problemas, se puede usar el rastreador de incidencias dentro del mismo repositorio de GitHub.
+
+
+ 
+ 
+# 4. Aplicaciones actuales
+
+ ¿En qué sectores o industrias se está usando?
+
+ ¿Qué beneficios ha traído y qué desafíos presenta?
+ 
+ 
+# 5. Ejemplos prácticos {.tabset .tabset-pills}
+
+## Carga de bibliotecas
+
+```{r}
+library(FactoMineR)
+library(ggplot2)
+library(factoextra)
+library(cluster)
+library(traineR)
+library(caret)
+library(rpart.plot)
+library(dplyr)
+
+```
+## Ejemplo1 {.tabset .tabset-pills}
+### carga datos
+```{r}
+
+
+# datos <- decathlon2
+# NOTA:  se tuvo de cargar los datos por un archivo pues usando
+# el comando anterior no permitía generar el archivo HTML. 
+#
+
+datos <- read.csv("decathlon2.csv", header = TRUE)
+datos <- datos[,-13]
+datos
+```
+
+
+### Análisis de Componentes Principales (ACP)
+
+Realice un Análisis de Componentes Principales (ACP) 
+
+
+```{r}
+
+res <- PCA(X = datos, scale.unit = TRUE, ncp = 5 , graph = FALSE)
+
+```
+
+### Graficacion
+
+Graficar un biplot usando el comando fviz pca biplot(...). Basado en ese gráfico, interprete el ACP tomando un cluster en cada uno de
+los cuadrantes.
+
+Con base al gráfico generado podemos identificar en los siguientes cuadrantes : 
+  
+1. Para el cuadrante superior izquierda, vemos que se agrupa las disciplinas deportivas 
+   1. __x100__: carrera 100 metros plano, 
+   1. __x400__: carrera 400 metros plano y 
+   1. __x100.hurdle__: carrera 100 metros con vallas. 
+    
+1. Para el cuadrante superior derecha, vemos que se agrupa las disciplinas deportivas: 
+   1. __Higg.jump__: salto alto,
+   1. __Shot.put__: lanzamiento de peso o de bala, 
+   1. __Discus__: lanzamiento de disco,
+   1. __Javeline__: lanzamiento de javalina. 
+    
+1. Para el cuadrante inferior izquierda, vemos que se agrupa la diciplina:
+   1. __Pole.vault__: Salto con pértiga.
+    
+1.  Para el cuadrante inferior derecha, vemos que se agrupa las diciplinas:
+   1. __Long.jump__: Salto largo y
+   1. __x1500m__: carrera de 1500 metros.
+  
+  
+De acuerdo a lo anterior podemos ver que en cuadrante 3 tiene la menor cantidad de disciplinas deportivas , ademas que la que se encuentra en este segmento esta muy tendiente a inclinarse al cuadrante 4, 
+
+```{r}
+
+# fviz_pca_ind(res, pointsize=5, pointshape=21, fill='#E7B800', repel=TRUE)
+
+
+fviz_pca_biplot(res, axes = c(1, 2), geom = c("point", "text"), addEllipses=TRUE, ellipse.level=0.95, ggtheme = theme_minimal())                
+      
+                
+#palette = NULL,   addEllipses = FALSE,   col.ind = "black",   fill.ind = "white",   col.ind.sup = "blue",   alpha.ind = 1, select.ind = list(name = NULL, cos2 = NULL, contrib = NULL)  )
+
+```
+
+### Clustering Jerárquico 
+
+Realice un Clustering Jerárquico sobre las componentes Principales usando 3 clusters y la distancia euclidea y el método de ward, genere los 3 gráficos generados en clase sobre este tema y Interprete los resultados.
+ 
+ 
+```{r}
+
+
+res  <- PCA(datos , scale.unit=TRUE, ncp=5, graph = FALSE)
+res.hcpc <- HCPC(res, nb.clust = -1, consol = TRUE, min = 3, max = 3, graph = FALSE)
+#plot.HCPC(res.hcpc, choice="bar")
+
+#plot.HCPC(res.hcpc, choice="map",select="cos2 0.1")
+plot.HCPC(res.hcpc, choice="map", select = "cos2 0.1 ")
+
+```
+
+*Grafico en 3D*
+ Podemos apreciar en el siguiente gráfico como se distribuyen los clusters visto en tres dimensiones. 
+
+```{r}
+
+
+plot.HCPC(res.hcpc, choice="3D.map", angle=60)
+``` 
+ 1. 
+
+## ejemplo2 {.tabset .tabset-pills}
+
+Se utilizará la tabla de datos **water_potability_V2.csv**. Este conjunto contiene métricas de la calidad del agua de 3280 individuos y tiene 10 variables, la variable a predecir es Potabilidad pues se desea predecir la potabilidad del agua, la descripción de las variables es la siguiente:
+
+1. X: Id.
+1. ph: El pH es una medida de la es una medida de la acidez o basicidad de una solución.
+1. Dureza: Capacidad del agua para precipitar jabón en mg / L (miligramos por litro)
+1. Solidos: Sólidos disueltos totales en ppm (partes por millón).
+1. Cloraminas: Cantidad de cloraminas en ppm.
+1. Sulfato: Cantidad de sulfatos disueltos en mg/L.
+1. Cloraminas: Conductividad eléctrica del agua en μS / cm (microSiemens/cm).
+1. Cloraminas: Cantidad de carbón orgánico en ppm.
+1. Trihalometanos: Cantidad de trihalometanos en μg / L.
+1. Turbiedad: Medida de la propiedad de emisión de luz del agua en NTU (Unidades de turbidez nefelométrica).
+1. Potabilidad: Indica si el agua es segura para consumo humano. 1 significa Potable y 0 No Potable (variable a predecir).
+
+
+### carga datos
+
+Se carga la tabla de datos water potability V2.csv en R, ejecute un na.omit(...), str(...), summary(...) y un dim(...), verifique la correcta lectura de los datos.
+
+```{r}
+
+
+potabilidad_agua <- read.csv(file = "water_potability_V2.csv",row.names = 1)
+
+dim(potabilidad_agua)
+
+potabilidad_agua <- potabilidad_agua %>% na.omit()
+
+#potabilidad_agua$Potabilidad <- factor(potabilidad_agua$Potabilidad,ordered = TRUE)
+
+potabilidad_agua
+
+str(potabilidad_agua)
+
+summary(potabilidad_agua) 
+ 
+dim(potabilidad_agua)
+
+```
+
+### Modelo Knn
+El objetivo de este ejercicio es calibrar el método de knn para esta tabla de datos. Aquı́ interesa predecir la variable Potabilidad. Para esto genera el modelo de knn con todos los tipos de algoritmos que permite train.knn en el parámetro kernel, estos algoritmos son: rectangular, triangular, epanechnikov, biweight, triweight, cos, inv, gaussian y optimal. 
+
+Para medir la calidad del método, haga una tabla comparativa con la Precisión Global y la precisión de cada categorı́a (1,0, donde 1 significa Potable y 0 No Potable) de la variable Potabilidad para los diferentes kernels. Use 80 % de la tabla para training y el 20 % de la tabla para testing.
+
+
+```{r}
+
+muestra<- createDataPartition(y = potabilidad_agua$Potabilidad, p = 0.80, list = F)
+
+taprendizaje <- potabilidad_agua[muestra, ]
+
+ttesting     <- potabilidad_agua[-muestra, ]
+
+
+lista_modelos <-list("rectangular", "triangular", "epanechnikov", "biweight", "triweight" , "cos", "inv", "gaussian" ,"optimal")
+resultados_modelos  <- tibble(
+  modelo = character(),
+  P_global = numeric(),
+  P_no_potable = numeric(),
+  P_potable = numeric(),
+)
+
+print(lista_modelos)
+
+for (mod in lista_modelos) {
+  
+  modelo       <- train.knn(Potabilidad~., data = taprendizaje, kmax = floor(sqrt(nrow(taprendizaje))),kernel = mod  )
+  prediccion   <- predict(modelo, ttesting, type = "class")
+  
+
+  MC <- confusion.matrix(ttesting, prediccion)
+  
+  
+  res <- general.indexes(mc = MC)
+  # se guarda los datos en un data set para luego desplegarlos. 
+  resultados_modelos <- add_row(resultados_modelos,
+            modelo = mod,
+            P_global = res$overall.accuracy,
+            P_no_potable = res$category.accuracy[1],
+            P_potable = res$category.accuracy[2])
+}
+
+
+modelos_ordenados <-resultados_modelos %>%  arrange(P_global)
+resultados_modelos
+print(modelos_ordenados)
+
+
+```
+
+### modelo 1:
+Modelo  de Bayes
+
+```{r}
+
+modelo       <- train.bayes(Potabilidad~., data = taprendizaje)
+prediccion   <- predict(modelo, ttesting, type = "class")
+head(prediccion$prediction)
+
+MC <- confusion.matrix(ttesting, prediccion)
+  
+  
+res <- general.indexes(mc = MC)
+  # se guarda los datos en un data set para luego desplegarlos. 
+resultados_modelos <- add_row(resultados_modelos,
+            modelo = "Bayes",
+            P_global = res$overall.accuracy,
+            P_no_potable = res$category.accuracy[1],
+            P_potable = res$category.accuracy[2])
+
+res
+
+
+```
+
+
+
+### modelo 2:
+Modelo  de Árboles de Decisión
+
+```{r}
+
+
+modelo       <- train.rpart(Potabilidad~.,
+                            data = taprendizaje,
+                            minsplit = 2)
+
+
+prediccion   <- predict(modelo, ttesting, type = "class")
+head(prediccion$prediction)
+
+MC <- confusion.matrix(ttesting, prediccion)
+  
+  
+res <- general.indexes(mc = MC)
+  # se guarda los datos en un data set para luego desplegarlos. 
+resultados_modelos <- add_row(resultados_modelos,
+            modelo = "Bayes",
+            P_global = res$overall.accuracy,
+            P_no_potable = res$category.accuracy[1],
+            P_potable = res$category.accuracy[2])
+
+res
+```
+
+
+### Resultados. 
+Resultados de los modelos generados
+
+```{r}
+modelos_ordenados <-resultados_modelos %>%  arrange(P_global)
+
+modelos_ordenados
+
+```
+
+
+
+
+
+ 
+# 6. Implicaciones éticas, sociales o técnicas
+
+ Sí, la aplicación de técnicas de machine learning (ML) utilizando el lenguaje R conlleva importantes implicaciones éticas, sociales y técnicas, así como dilemas activos dentro de la comunidad de ciencia de datos. R, aunque es una herramienta poderosa, no es inmune a los problemas de sesgo y transparencia inherentes a los algoritmos de ML.
+
+1. Implicaciones Éticas y Sociales en R
+Las implicaciones éticas de R provienen de su uso en el modelado de ML y datos sensibles, no del lenguaje en sí.
+
+A. Sesgo y Equidad (Bias and Fairness)
+Implicación: Los paquetes de R pueden crear modelos altamente predictivos, pero si los datos de entrenamiento reflejan sesgos históricos o sociales (ej., sesgos demográficos en datos crediticios o de salud), el modelo de R amplificará y automatizará ese sesgo.
+
+Dilema: La comunidad de R a menudo prioriza la precisión estadística y la eficiencia del cómputo sobre la equidad. Se necesita un esfuerzo consciente para usar packages de R como fairness o auditor para medir y mitigar el impacto desigual de las predicciones en diferentes grupos (étnicos, de género, etc.).
+
+B. Transparencia y Explicabilidad (XAI)
+Implicación: Muchos de los modelos más potentes en R (como los creados con randomForest, xgboost, o h2o) son modelos de "caja negra" (black box). Las decisiones que toman son difíciles de explicar a los usuarios finales o reguladores.
+
+Dilema: Existe una tensión entre la complejidad (mayor precisión) y la interpretabilidad (explicabilidad). R ha desarrollado fuertes packages para abordar esto (ej., DALEX, lime, iml), fomentando el debate sobre qué tan simple debe ser un modelo para ser considerado ético, especialmente en decisiones de alto riesgo (medicina, justicia).
+
+2. Implicaciones Técnicas y Debates
+Las implicaciones técnicas se centran en el ecosistema único de R y las elecciones de diseño que los desarrolladores deben hacer.
+
+A. Reproducibilidad y Gestión de Versiones
+Implicación: R depende fuertemente de una vasta colección de packages desarrollados por la comunidad. Los cambios o las dependencias rotas entre versiones de packages pueden hacer que el código de ML sea imposible de reproducir unos meses después.
+
+Debate/Solución: El debate se centra en el uso de herramientas como renv o packrat (para la gestión de entornos de proyecto) y el movimiento hacia contenedores como Docker para asegurar que el entorno de ejecución de un modelo sea idéntico en cualquier máquina.
+
+B. Consistencia del Lenguaje (The Tidyverse vs. Base R)
+Implicación: La popularidad del tidyverse (con el operador %>%) ha simplificado el código, pero también ha creado dos dialectos de R.
+
+Dilema: Los desarrolladores y usuarios deben elegir entre:
+
+Base R: Mayor estabilidad y dependencias mínimas.
+
+Tidyverse/dplyr: Mayor legibilidad y velocidad de desarrollo.
+
+El debate impacta en el desarrollo de packages de ML, donde la elección del estilo de código puede determinar qué grupos de usuarios adoptarán la herramienta.
+
+C. Escalabilidad y Producción
+Implicación: R tradicionalmente ha luchado con la escalabilidad en la producción (productionization) en comparación con Python. Aunque R es excelente para el análisis y prototipado, mover un modelo de R a un entorno de producción de baja latencia puede ser un desafío.
+
+Debate/Solución: La comunidad ha respondido con herramientas para la implementación (deployment), como Plumber (para crear APIs web) y Shiny (para aplicaciones interactivas), lo que impulsa el debate sobre si R puede competir como un lenguaje de producción a gran escala o si debería seguir siendo el líder indiscutible en la fase de investigación estadística.
+
+
+
+#  7. Referencias académicas y técnicas
+
+ REFERENCIAS
+
+[0] https://es.wikipedia.org/wiki/R_%28lenguaje_de_programaci%C3%B3n%29 
+
+[1] https://rubenfcasal.github.io/aprendizaje_estadistico/aprendizaje_estadistico.pdf pag 9
+
+[2] https://rubenfcasal.github.io/aprendizaje_estadistico/aprendizaje_estadistico.pdf pag 14
+
+[3] https://github.com/PROMiDAT/traineR
+
+
