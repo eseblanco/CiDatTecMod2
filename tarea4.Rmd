@@ -23,12 +23,12 @@ output:
 
  *¿Qué es y en qué contexto aparece? *
  
-R es un lenguaje de programación con enfoque al análisis estadístico. Implementa el lenguaje de software libre S. Se utiliza mucho para investigación científica en áreas como aprendizaje automático, minería de datos, econometría, investigación biomédica, bioinformática y en la inferencia estadística. [1]
+R es un lenguaje de programación con enfoque al análisis estadístico. Implementa el lenguaje de software libre S. Se utiliza mucho para investigación científica en áreas como aprendizaje automático, minería de datos, econometría, investigación biomédica, bioinformática y en la inferencia estadística. [[1]](#appendix-1)
 
 
 *¿Por qué es relevante en la actualidad?*
 
-El término machine learning (ML; aprendizaje automático) se utiliza en el campo de la inteligencia artificial desde 1959 para hacer referencia, fundamentalmente, a algoritmos de predicción (inicialmente para reconocimiento de patrones). Muchas de las herramientas que utilizan provienen del campo de la estadística y, en cualquier caso, la estadística (y por tanto las matemáticas) es la base de todos estos enfoques para analizar datos (y no conviene perder la base formal). Por este motivo, desde la estadística computacional se introdujo el término statistical learning (aprendizaje estadístico) para hacer referencia a este tipo de herramientas, pero desde el punto de vista estadístico (teniendo en cuenta la incertidumbre debida a no disponer de toda la información). Tradicionalmente, ML no se preocupa del origen de los datos. Incluso es habitual que se considere que un conjunto o enorme de datos es equivalente a disponer de toda la información  [1]
+El término machine learning (ML; aprendizaje automático) se utiliza en el campo de la inteligencia artificial desde 1959 para hacer referencia, fundamentalmente, a algoritmos de predicción (inicialmente para reconocimiento de patrones). Muchas de las herramientas que utilizan provienen del campo de la estadística y, en cualquier caso, la estadística (y por tanto las matemáticas) es la base de todos estos enfoques para analizar datos (y no conviene perder la base formal). Por este motivo, desde la estadística computacional se introdujo el término statistical learning (aprendizaje estadístico) para hacer referencia a este tipo de herramientas, pero desde el punto de vista estadístico (teniendo en cuenta la incertidumbre debida a no disponer de toda la información). Tradicionalmente, ML no se preocupa del origen de los datos. Incluso es habitual que se considere que un conjunto o enorme de datos es equivalente a disponer de toda la información. [[2]](#appendix-2)
 
  
  
@@ -58,7 +58,7 @@ Métodos (principalmente) de clasificación:
    1. Regresión por projection pursuit (incluyendo Single index model): ppr(), np::npindex().
    1. Redes neuronales: nnet, neuralnet.
 
-Como todos estos paquetes emplean opciones, estructuras y convenciones sintácticas diferentes [2]
+Como todos estos paquetes emplean opciones, estructuras y convenciones sintácticas diferentes [[3]](#appendix-3)
 
  
 # 3. Estado del arte
@@ -78,7 +78,7 @@ El repositorio de GitHub traineR de PROMiDAT está disponible en https://github.
 
 Este repositorio aloja el código fuente del paquete traineR para el lenguaje de programación R, diseñado para estandarizar y unificar los métodos de creación de modelos predictivos de clasificación y regresión. 
 
-Información clave [3]
+Información clave [[4]](#appendix-4)
 
 Propósito: El paquete traineR busca unificar la forma de construir modelos predictivos mediante una variedad de algoritmos, incluyendo:
 
@@ -427,13 +427,16 @@ Debate/Solución: La comunidad ha respondido con herramientas para la implementa
 #  7. Referencias académicas y técnicas
 
  REFERENCIAS
+<a id="appendix-1"></a>
+[1] https://es.wikipedia.org/wiki/R_%28lenguaje_de_programaci%C3%B3n%29 
 
-[0] https://es.wikipedia.org/wiki/R_%28lenguaje_de_programaci%C3%B3n%29 
+<a id="appendix-2"></a>
+[2] https://rubenfcasal.github.io/aprendizaje_estadistico/aprendizaje_estadistico.pdf pag 9
 
-[1] https://rubenfcasal.github.io/aprendizaje_estadistico/aprendizaje_estadistico.pdf pag 9
+<a id="appendix-3"></a>
+[3] https://rubenfcasal.github.io/aprendizaje_estadistico/aprendizaje_estadistico.pdf pag 14
 
-[2] https://rubenfcasal.github.io/aprendizaje_estadistico/aprendizaje_estadistico.pdf pag 14
-
-[3] https://github.com/PROMiDAT/traineR
+<a id="appendix-4"></a>
+[4] https://github.com/PROMiDAT/traineR
 
 
