@@ -32,7 +32,7 @@ El término machine learning (ML; aprendizaje automático) se utiliza en el camp
 
  
  
-# 2. Fundamento teóricoå
+# 2. Fundamento teórico
 
 Métodos (de aprendizaje supervisado) y paquetes de R 
 
@@ -114,6 +114,7 @@ El lenguaje de programación R se utiliza en numerosos sectores industriales los
 - Retail, comercio electrónico y marketing: R se utiliza para segmentación de clientes, análisis de ventas, recomendaciones, análisis de sentimientos en redes sociales.
 
 ¿Qué beneficios ha traído y qué desafíos presenta?
+
 1. **Software libre y gratuito**  
 R es un lenguaje *open-source*, lo que facilita su acceso tanto a instituciones educativas como a empresas sin necesidad de licencias costosas. [[6]](#appendix-6)
 
