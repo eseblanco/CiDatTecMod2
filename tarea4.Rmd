@@ -32,8 +32,7 @@ El término machine learning (ML; aprendizaje automático) se utiliza en el camp
 
  
  
-# 2. Fundamento teórico
-
+# 2. Fundamento teóricoå
 
 Métodos (de aprendizaje supervisado) y paquetes de R 
 
@@ -97,15 +96,59 @@ Organización:
       El repositorio forma parte de la organización más amplia de PROMiDAT (Programa Iberoamericano de Formación en Minería de Datos) en GitHub, que desarrolla y mantiene varios paquetes de R para la educación y práctica en ciencia de datos.
 
 Documentación y soporte: Para documentación general, se puede visitar la página del paquete en RDocumentation. Para reportar errores o problemas, se puede usar el rastreador de incidencias dentro del mismo repositorio de GitHub.
-
-
  
  
 # 4. Aplicaciones actuales
 
- ¿En qué sectores o industrias se está usando?
+¿En qué sectores o industrias se está usando?
+El lenguaje de programación R se utiliza en numerosos sectores industriales los cuales destacan [[5]](#appendix-5): 
 
- ¿Qué beneficios ha traído y qué desafíos presenta?
+- Servicios financieros / banca: R se usa para modelado de riesgo crediticio, análisis de series temporales, visualización financiera, etc.
+
+- Salud, farmacéutica y biotecnología: R se emplea en bioinformática, ensayos clínicos, epidemiología, análisis de genómica.
+
+- Investigación académica / ciencias: R es ampliamente utilizado en entornos de investigación y educación para análisis estadístico y visualización.
+
+- Manufactura / industria: R se aplica en procesos de manufactura, optimización de producción, análisis de datos industriales.
+
+- Retail, comercio electrónico y marketing: R se utiliza para segmentación de clientes, análisis de ventas, recomendaciones, análisis de sentimientos en redes sociales.
+
+¿Qué beneficios ha traído y qué desafíos presenta?
+1. **Software libre y gratuito**  
+R es un lenguaje *open-source*, lo que facilita su acceso tanto a instituciones educativas como a empresas sin necesidad de licencias costosas. [[6]](#appendix-6)
+
+2. **Amplio ecosistema de paquetes**  
+Posee miles de librerías en CRAN (por ejemplo, `ggplot2`, `dplyr`, `caret`) que cubren desde análisis estadístico hasta aprendizaje automático y visualización avanzada. [[7]](#appendix-7)
+
+3. **Diseñado para análisis estadístico**  
+R fue creado específicamente para el análisis de datos y pruebas estadísticas, siendo ideal para investigadores y analistas. [[7]](#appendix-7)
+
+4. **Visualización de datos de alta calidad**  
+Con herramientas como `ggplot2` o `plotly`, R permite crear gráficos profesionales que comunican resultados de forma clara y estética. [[8]](#appendix-8)
+
+5. **Multiplataforma e integración**  
+Funciona en Windows, macOS y Linux, e integra fácilmente con otros lenguajes como Python, C++, Java o SQL. [[6]](#appendix-6)
+
+6. **Fomenta la investigación reproducible**  
+Herramientas como `RMarkdown` y `knitr` permiten combinar código, análisis, texto y resultados en un mismo documento reproducible. [[7]](#appendix-7)
+---
+
+##  Desafíos del uso de R
+
+1. **Curva de aprendizaje pronunciada**  
+Requiere conocimientos básicos de estadística y programación, lo que puede ser un obstáculo inicial para nuevos usuarios. [[7]](#appendix-7)
+
+2. **Rendimiento y manejo de grandes volúmenes de datos**  
+R puede presentar limitaciones de memoria y lentitud al procesar conjuntos de datos masivos. [[6]](#appendix-6)
+
+3. **No orientado a programación general o producción**  
+Aunque excelente para análisis, no está optimizado para desarrollo de aplicaciones o entornos de producción complejos. [[9]](#appendix-9)
+
+4. **Gestión de memoria y eficiencia**  
+El uso intensivo de memoria puede requerir optimización o librerías adicionales. [[10]](#appendix-10)
+
+5. **Despliegue y escalabilidad**  
+Para entornos donde la seguridad o escalabilidad son críticas, R requiere complementos adicionales o integración con otras herramientas. [[6]](#appendix-6)
  
  
 # 5. Ejemplos prácticos {.tabset .tabset-pills}
@@ -335,8 +378,6 @@ res
 
 ```
 
-
-
 ### modelo 2:
 Modelo  de Árboles de Decisión
 
@@ -375,10 +416,6 @@ modelos_ordenados <-resultados_modelos %>%  arrange(P_global)
 modelos_ordenados
 
 ```
-
-
-
-
 
  
 # 6. Implicaciones éticas, sociales o técnicas
@@ -439,4 +476,21 @@ Debate/Solución: La comunidad ha respondido con herramientas para la implementa
 <a id="appendix-4"></a>
 [4] https://github.com/PROMiDAT/traineR
 
+<a id="appendix-5"></a>
+[5] https://data-flair.training/blogs/r-applications
+
+<a id="appendix-6"></a>
+[6] https://www.simplilearn.com/what-is-r-article
+
+<a id="appendix-7"></a>
+[7] https://www.geeksforgeeks.org/r-language/pros-and-cons-of-r-programming-language
+
+<a id="appendix-8"></a>
+[8] https://www.r-project.org/about.html
+
+<a id="appendix-9"></a>
+[9] https://www.codecademy.com/resources/blog/what-is-r-used-for
+
+<a id="appendix-10"></a>
+[10] https://arxiv.org/pdf/1704.02996
 
